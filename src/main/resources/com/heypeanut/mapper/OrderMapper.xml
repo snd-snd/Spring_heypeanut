@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.heypeanut.mapper.OrderMapper">
+	<insert id="register">
+		insert into orders (ono, id, pno, amount, total)
+		values (seq_orders.nextVal, #{id}, #{pno}, #{amount}, #{total})
+	</insert>
+
+	<select id="history" resultType="com.heypeanut.domain.OrderVO">
+		select orders.pno as pno, pname, amount, total, regDate, status from orders, product
+		where orders.pno = product.pno and id = #{id} order by ono desc
+	</select>
+</mapper>

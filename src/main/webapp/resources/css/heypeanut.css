@@ -1,0 +1,95 @@
+@charset "UTF-8";
+
+section {
+	margin-bottom: 50px;
+}
+
+.main-control {
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
+.main-logo {
+	width: 250px;
+	height: 83px;
+}
+
+.main-features {
+	
+}
+
+.main {
+	margin-top: 25px;
+}
+
+.swiper-container {
+	width:100%;
+	height:100%;
+}
+
+.pname {
+	font-size: 18px;
+	font-weight: bold;
+	
+}
+
+.scale {
+  -webkit-transform: scale(1);
+  -moz-transform: scale(1);
+  -ms-transform: scale(1);
+  -o-transform: scale(1);
+  transform: scale(1);
+  -webkit-transition: all 0.3s ease-in-out; //부드러운 모션을 위해 추가
+  -moz-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+.scale:hover {
+  -webkit-transform: scale(1.2);
+  -moz-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  -o-transform: scale(1.2);
+  transform: scale(1.2);
+}
+
+.img {
+	overflow:hidden; /*이미지 사이즈*/	
+} 
+
+.img-sample {
+	width: 50px;
+	height: 50px;
+}
+
+
+.join-button {
+	width: 500px;
+	margin: 0 auto;
+}
+
+.form-md {
+	width: 800px;
+	margin: 0 auto;
+}
+
+.login-form {
+	width: 500px;
+	margin: 0 auto;
+}
+
+.login-button {
+	display: inline;
+	width: 248px;
+}
+
+.dragzone{
+    outline: 2px dashed #8E8C84 ;
+    /* outline-offset:-10px; */  
+    text-align: center;
+    transition: all .15s ease-in-out;
+    width: 200px;
+    height: 200px;
+    background-image: url("/resources/img/upload.png");
+    background-size: 200px;
+}
+

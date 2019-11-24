@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.heypeanut.mapper.AttachMapper">
+	<select id="detail" resultType="com.heypeanut.domain.AttachVO">
+		select * from attach where pno = #{pno}
+	</select>
+	
+	<insert id="register">
+		insert into attach values (#{uploadPath}, #{uuid}, #{fileName}, #{pno})
+	</insert>
+</mapper>

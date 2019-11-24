@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.heypeanut.mapper.BasketMapper">
+	<insert id="register">
+		insert into basket (bno, id, pno, price, amount)
+		values (seq_basket.nextVal, #{id}, #{pno}, #{price}, #{amount})
+	</insert>
+
+	<select id="basket" resultType="com.heypeanut.domain.BasketVO">
+		select basket.pno as pno, pname, amount, basket.price as price, regDate from basket, product
+		where basket.pno = product.pno and id = #{id} order by bno desc
+	</select>
+</mapper>
