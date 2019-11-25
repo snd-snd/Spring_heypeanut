@@ -40,6 +40,11 @@ public class ProductServiceImpl implements ProductService {
 	}
 	
 	@Override
+	public List<ProductVO> nonList(Criteria cri) {
+		return p_mapper.nonList(cri);
+	}
+	
+	@Override
 	public int listTotalCount(Criteria cri) {
 		return p_mapper.listTotalCount(cri);
 	}
@@ -58,4 +63,5 @@ public class ProductServiceImpl implements ProductService {
 		return order;
 	}
 
+	
 }

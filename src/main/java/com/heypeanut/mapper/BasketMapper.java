@@ -8,4 +8,5 @@ public interface BasketMapper {
 
 	boolean register(BasketVO basket);
 	List<BasketVO> basket(String id);
+	boolean remove(int bno);
 }

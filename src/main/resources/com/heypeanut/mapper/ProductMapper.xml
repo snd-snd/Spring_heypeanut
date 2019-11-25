@@ -23,6 +23,18 @@
 			where rn > (#{pageNum} -1) * #{amount}
 		]]>		
 	</select>
+	
+		<!-- 페이지 나누기가 적용된 리스트 가져오기 -->
+	<select id="nonList" resultType="com.heypeanut.domain.ProductVO">
+		<![CDATA[
+			select pno, category, pname, price			
+       		from product where
+        ]]>
+        	<include refid="criteria"/>
+        <![CDATA[       		
+       		pno>0
+		]]>		
+	</select>
 
 	<select id="listTotalCount" resultType="int">
     	<![CDATA[
@@ -53,10 +65,10 @@
 							category like '건과류'
 						</when>
 						<when test="keyword == 'fish'.toString()">
-							category like '견어물'
+							category like '건어물'
 						</when>
 						<when test="keyword == 'powder'.toString()">
-							category like '견강분말'
+							category like '건강분말'
 						</when>
 						<when test="keyword == 'snacks'.toString()">
 							category like '스낵류'

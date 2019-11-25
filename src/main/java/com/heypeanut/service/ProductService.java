@@ -10,6 +10,7 @@ public interface ProductService {
 
 	boolean register(ProductVO product);
 	List<ProductVO> list(Criteria cri);
+	List<ProductVO> nonList(Criteria cri);	
 	int listTotalCount(Criteria cri);
 	ProductVO detail(int pno);
 	

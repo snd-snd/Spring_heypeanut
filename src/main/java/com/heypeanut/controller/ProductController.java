@@ -38,10 +38,14 @@ public class ProductController {
 		}
 		
 		
-		List<ProductVO> list = p_service.list(cri);
+		List<ProductVO> list = p_service.nonList(cri);
 		if (!list.isEmpty()) {
 			model.addAttribute("list", list);
-			model.addAttribute("cate", new Category(cate));
+			if (cate != null) {
+				model.addAttribute("cate", new Category(cate));				
+			} else {
+				model.addAttribute("cate", new Category(cri.getKeyword()));
+			}
 		}
 
 	}

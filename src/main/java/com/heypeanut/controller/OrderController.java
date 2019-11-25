@@ -69,4 +69,13 @@ public class OrderController {
 						: new ResponseEntity<String>("fail", HttpStatus.BAD_REQUEST);
 	}
 	
+	@PostMapping("/basket/remove")
+	public ResponseEntity<String> basketRemove(int bno) {
+		log.info("CategoryController -> 장바구니 첨삭: " + bno);
+		
+		return b_service.remove(bno)
+				? new ResponseEntity<String>("success", HttpStatus.OK)
+						: new ResponseEntity<String>("fail", HttpStatus.BAD_REQUEST);
+	}
+	
 }

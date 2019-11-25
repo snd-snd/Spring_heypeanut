@@ -100,9 +100,9 @@
 						<label class="control-label"></label>
 						<div class="form-group">
 							<div class="input-group">
-								<input type="text" class="form-control" placeholder="Search">
+								<input type="text" class="form-control" placeholder="Search" id="search">
 								<div class="input-group-append">
-									<button class="btn btn-secondary"><i class="fas fa-search"></i></button>
+									<button class="btn btn-secondary" id="searchBtn"><i class="fas fa-search"></i></button>
 								</div>
 							</div>
 						</div>
@@ -141,3 +141,33 @@
 		  </div>
 		</nav>
 	</div>
+	
+	<form action="/product/list" id="searchForm">
+		<input type="hidden" name="type" value="name" />
+		<input type="hidden" name="keyword" value="" />
+	</form>
+	
+	<script>
+		$(function(){
+			
+			var search = $("#search");
+			var searchBtn = $("#searchBtn");
+			var searchForm = $("#searchForm");
+			
+			
+			searchBtn.on("click", function(){
+				var input = search.val();
+				
+				if (input == '' || input.length == 0){
+					alert('검색어를 입력하세요.');
+					return;
+				}
+				
+				searchForm.find("input[name='keyword']").val(input);
+				searchForm.submit();
+			})
+			
+		})
+		
+	
+	</script>	

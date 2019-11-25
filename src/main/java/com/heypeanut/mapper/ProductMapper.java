@@ -11,6 +11,7 @@ public interface ProductMapper {
 
 	boolean register(ProductVO product);
 	List<ProductVO> list(Criteria cri);
+	List<ProductVO> nonList(Criteria cri);	
 	int listTotalCount(Criteria cri);
 	ProductVO detail(@Param("pno") int pno);
 }

@@ -90,5 +90,18 @@
 	
 	<script>
 	
+	$(function(){
+		var form = $("#form");
+		
+		$(".page-item a").click(function(e){
+			e.preventDefault(); //a태그의 동작을 막는 함수
+			
+			form.find("input[name='pageNum']").val($(this).attr("href"));			
+			form.submit();
+		})
+	})
+	
+	
+	
 	</script>
 <%@ include file="../../include/footer.jsp" %>

@@ -24,4 +24,8 @@ public class BasketServiceImpl implements BasketService {
 		return b_mapper.basket(id);
 	}
 
+	@Override
+	public boolean remove(int bno) {
+		return b_mapper.remove(bno);
+	}
 }

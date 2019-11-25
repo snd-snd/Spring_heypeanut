@@ -38,7 +38,7 @@
 						      <td class="align-middle plus"><fmt:formatNumber pattern="#,###원" value="${bas.price * bas.amount }"/></td>
 						      <td class="align-middle">
 						      	<button class="btn btn-outline-secondary btn-sm">주문</button> 
-						      	<button class="btn btn-secondary btn-sm">삭제</button>
+						      	<button class="btn btn-secondary btn-sm removeBtn" data-bno="${bas.bno }">삭제</button>
 						      </td>     
 						    </tr>
 					  	</c:forEach>					    	   
@@ -112,6 +112,30 @@ $(function(){
 	
 	$("#sum").text(addComma(sum)+"원");
 	$("#total").text(addComma(sum+2500)+"원");
+	
+	
+	$("tbody").on("click", ".removeBtn", function(){
+		var bno = $(this).data("bno");
+		
+/* 		$.ajax({
+			type : 'post',
+			url : '/order/complete',
+			contentType : 'application/json;charset=utf-8',
+			data : JSON.stringify(param),
+			success : function(result){
+				var msg = '결제가 완료되었습니다.';
+				msg += '고유ID : ' + rsp.imp_uid;
+				msg += '상점 거래ID : ' + rsp.merchant_uid;
+				msg += '결제 금액 : ' + rsp.paid_amount;
+				msg += '카드 승인번호 : ' + rsp.apply_num;
+				alert(msg);
+				location.href='/order/history?id='+id;			
+			}
+		}); */
+		
+		
+	})
+	
 	
 })
 
