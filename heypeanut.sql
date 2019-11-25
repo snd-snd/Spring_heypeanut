@@ -16,11 +16,12 @@ pno number,
 category varchar2(100),
 pname varchar2(100),
 price number,
+score number default 0,
+weekCount number default 0,
 constraint pk_product primary key (pno));
 
 create sequence seq_product;
 create sequence seq_orders;
-create sequence seq_basket;
 
 create table orders(
 ono number,
@@ -38,8 +39,8 @@ create table basket(
 bno number,
 id varchar2(100),
 pno number,
-price number,
 amount number,
+price number,
 regDate date default sysdate,
 constraint pk_basket primary key (bno),
 constraint fk_members_b foreign key (id) references members (id) on delete cascade,
@@ -53,30 +54,62 @@ pno number,
 constraint fk_product_a foreign key (pno) references product (pno) on delete cascade);
 
 create table review(
-bno number,
+rno number,
 title varchar2(100),
 content varchar2(500),
 writer varchar2(100),
 regDate date default sysdate,
+score number,
 pno number,
-constraint pk_review primary key (bno),
+constraint pk_review primary key (rno),
+constraint fk_members_r foreign key (writer) references members (id) on delete cascade,
 constraint fk_product_r foreign key (pno) references product (pno) on delete cascade);
 
 create sequence seq_review;
+
+create table qna(
+qno number,
+title varchar2(100),
+content varchar2(2000),
+writer varchar2(100),
+regDate date default sysdate,
+hit number default 0,
+constraint pk_qna primary key (qno),
+constraint fk_members_q foreign key (writer) references members (id) on delete cascade);
+
+create sequence seq_qna;
 
 drop table members;
 drop table product;
 drop table orders;
 drop table basket;
 drop table attach;
+drop table review;
+drop table qna;
 
 select * from members;
-select * from orders,product where orders.pno = product.pno;
+select * from orders;
 select * from basket;
 select * from product;
 select * from attach;
+select * from review;
+select * from qna;
 
-select orders.pno, pname, amount, total, regDate, status from orders, product
-		where orders.pno = product.pno and id = 'kim123' order by ono desc;
+select * from review, members where review.writer = members.id;
+
+insert into review (rno, title, content, writer, score, pno)
+select seq_review.nextVal, title, content, writer, score, pno
+from review;
 
 commit;
+
+select pno, category, pname, price from
+(select pno, category, pname, price from product order by pno desc)
+where rownum <= 4;
+
+alter table product add score number default 0;
+alter table product add weekCount number default 0;
+
+insert into qna (qno, title, content, writer)
+select seq_qna.nextVal, title, content, writer
+from qna;
