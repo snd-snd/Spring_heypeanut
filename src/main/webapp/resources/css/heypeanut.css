@@ -103,3 +103,7 @@ section {
   cursor: pointer;
 }
 .starR.on{background-position:0 0;}
+
+.review-content {
+	margin-bottom: 20px;
+}

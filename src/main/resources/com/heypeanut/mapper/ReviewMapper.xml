@@ -22,5 +22,9 @@
 	<select id="totalCount" resultType="int">
 		select count(*) from review where pno = #{pno}
 	</select>
+	
+	<select id="read" resultType="com.heypeanut.domain.ReviewVO">
+		select * from review where rno = #{rno}
+	</select>
 
 </mapper>

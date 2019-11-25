@@ -12,4 +12,5 @@ public interface ReviewMapper {
 	boolean add(ReviewVO review);
 	List<ReviewVO> list(@Param("cri") Criteria cri,@Param("pno") int pno);
 	int totalCount(int pno);
+	ReviewVO read(int rno);
 }

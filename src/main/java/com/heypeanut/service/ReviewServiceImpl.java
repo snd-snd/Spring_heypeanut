@@ -29,4 +29,9 @@ public class ReviewServiceImpl implements ReviewService {
 	public ReviewPageVO list(Criteria cri, int pno) {
 		return new ReviewPageVO(r_mapper.list(cri, pno), r_mapper.totalCount(pno));
 	}
+	
+	@Override
+	public ReviewVO read(int rno) {
+		return r_mapper.read(rno);
+	}
 }

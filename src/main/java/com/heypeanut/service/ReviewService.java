@@ -8,4 +8,5 @@ public interface ReviewService {
 
 	boolean add(ReviewVO review);
 	ReviewPageVO list(Criteria cri, int pno);
+	ReviewVO read(int rno);
 }

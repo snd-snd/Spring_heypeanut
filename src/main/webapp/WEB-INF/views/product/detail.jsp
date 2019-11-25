@@ -137,7 +137,9 @@
 								<td>상품문의</td>
 								<td>이재영</td>
 								<td>2019-11-11</td>
-							</tr>     
+							</tr> 
+				     
+							     
 					    </tbody>
 					</table>
 				 
@@ -242,10 +244,29 @@ $(function(){
 			}
 		}); 	 
 	})
+	
 	var reviewContent = $(".reviewContent");
 	var reviewPage = $(".reviewPage");
 	var pageNum = 1;
 	
+	// 개별 리뷰 클릭시 이벤트
+	reviewContent.on("click", "tr", function(){
+		var rno = $(this).data("rno");
+		var trTag = $(this);
+		var html = "";		
+		reviewService.read(rno, function(result){
+			reviewContent.find(".node").remove();
+	
+			html += "<tr class='node'>";
+			html += "<td colspan='4'>";
+			html += "<div class='review-content'>"+result.content+"</div>";
+			html += "</td>";
+			html += "</tr>";
+
+			trTag.after(html);
+		});
+		
+	})
 		
 	// 리뷰 리스트 보여주기
 	function reviewList(page){
@@ -263,7 +284,7 @@ $(function(){
 			var html = "";
 			
 			for (var i=0, len=reviews.length||0; i<len; i++){				
-				html += "<tr>";
+				html += "<tr data-rno='"+reviews[i].rno+"'>";
 				html += "<td>"+reviews[i].rno+"</td>";
 				html += "<td>"+reviews[i].title+"</td>";								
 				html += "<td>"+reviews[i].name+"</td>";
@@ -313,6 +334,7 @@ $(function(){
 		pageNum = $(this).attr("href");
 		reviewList(pageNum);
 	})
+
 })
 
 function addComma(num) {

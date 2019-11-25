@@ -33,6 +33,15 @@ public class ReviewController {
 		return new ResponseEntity<ReviewPageVO>(instance, HttpStatus.OK);
 	}
 	
+	@GetMapping("/read")
+	public ResponseEntity<ReviewVO> reviewList(int rno){
+		log.info("ReviewController -> 리뷰 디테일 GET: "+rno);
+		
+		ReviewVO review = r_service.read(rno);
+		
+		return new ResponseEntity<ReviewVO>(review, HttpStatus.OK);
+	}
+	
 	@PostMapping("/add")
 	public ResponseEntity<String> add(@RequestBody ReviewVO review){
 		log.info("ReviewController -> 리뷰 작성: "+review);

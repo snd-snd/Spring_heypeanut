@@ -17,6 +17,19 @@ var reviewService = (function(){
 			}
 		});		
 	}
+	
+	function read(rno, callback){
+
+		$.getJSON({
+			type : 'get',
+			url : '/review/read?rno='+rno,
+			success : function(data){
+				if(callback){
+					callback(data);
+				}
+			}
+		});		
+	}
 
 	
 	function displayTime(timeValue){
@@ -42,6 +55,7 @@ var reviewService = (function(){
 	
 	return{ //클로저 패턴
 		getList:getList,
+		read:read,
 		displayTime:displayTime
 	};
 	
