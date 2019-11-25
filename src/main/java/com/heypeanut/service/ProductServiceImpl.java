@@ -45,6 +45,21 @@ public class ProductServiceImpl implements ProductService {
 	}
 	
 	@Override
+	public List<ProductVO> topList() {
+		return p_mapper.topList();
+	}
+	
+	@Override
+	public List<ProductVO> newList() {
+		return p_mapper.newList();
+	}
+	
+	@Override
+	public List<ProductVO> weekList() {
+		return p_mapper.weekList();
+	}
+	
+	@Override
 	public int listTotalCount(Criteria cri) {
 		return p_mapper.listTotalCount(cri);
 	}
@@ -63,5 +78,9 @@ public class ProductServiceImpl implements ProductService {
 		return order;
 	}
 
+	@Override
+	public boolean weekSet() {
+		return p_mapper.weekSet();
+	}
 	
 }

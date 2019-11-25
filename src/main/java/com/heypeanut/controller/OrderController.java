@@ -71,7 +71,7 @@ public class OrderController {
 	
 	@PostMapping("/basket/remove")
 	public ResponseEntity<String> basketRemove(int bno) {
-		log.info("CategoryController -> 장바구니 첨삭: " + bno);
+		log.info("CategoryController -> 장바구니 제거: " + bno);
 		
 		return b_service.remove(bno)
 				? new ResponseEntity<String>("success", HttpStatus.OK)

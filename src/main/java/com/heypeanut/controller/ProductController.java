@@ -43,9 +43,10 @@ public class ProductController {
 			model.addAttribute("list", list);
 			if (cate != null) {
 				model.addAttribute("cate", new Category(cate));				
-			} else {
-				model.addAttribute("cate", new Category(cri.getKeyword()));
-			}
+			} 
+		}
+		if (cate == null) {
+			model.addAttribute("cate", new Category(cri.getKeyword()));			
 		}
 
 	}
@@ -55,6 +56,8 @@ public class ProductController {
 		log.info("CategoryController -> 해당 제품을 GET");
 				
 		ProductVO product = p_service.detail(pno);
+		
+		
 		if (product != null) {
 			model.addAttribute("pro", product);
 		}
@@ -62,13 +65,15 @@ public class ProductController {
 	}
 	
 	@PostMapping("/order")
-	public String order(Model model, String id, int pno, int amount) {
-		log.info("CategoryController -> 구매 페이지로 이동: " + id +","+ pno +","+ amount);
+	public String order(Model model, String id, int pno, int amount, int bno) {
+		log.info("CategoryController -> 구매 페이지로 이동: " + id +","+ pno +","+ amount+","+bno);
 		
 		OrderInfo info = p_service.order(id, pno);
 		if (info != null) {
 			info.setAmount(amount);
-			model.addAttribute("info", info);			
+			model.addAttribute("info", info);
+			if (bno != 0)
+				model.addAttribute("bno", bno);
 		}
 		
 		return "/product/order";

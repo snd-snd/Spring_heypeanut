@@ -18,6 +18,7 @@
 					      <th scope="col">합계</th>
 					      <th scope="col">주문일자</th>
 					      <th scope="col">상태</th>
+					      <th scope="col">비고</th>
 					    </tr>
 					  </thead>
 					  <tbody>
@@ -44,7 +45,10 @@
 						      	<c:when test="${order.status == 2 }">
 							      <td class="align-middle">배송완료</td>  
 						      	</c:when>
-						      </c:choose>						        
+						      </c:choose>
+							  <td class="align-middle">
+						      	<button class="btn btn-outline-secondary btn-sm reviewBtn" data-pno="${order.pno }" data-id="${order.id }">리뷰작성</button> 
+						      </td>						        
 						    </tr>					  	
 					  	</c:forEach>					     	   
 					  </tbody>
@@ -53,4 +57,100 @@
 			</section>
 		</div>
 	</div>
+	
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Review</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      	<div class="form-group">
+      		<input class="form-control" type="text" placeholder="제목"/>
+      	</div>
+      	<div class="form-group">
+	        <textarea class="form-control" rows="4" placeholder="내용"></textarea>
+      	</div>
+      	<div class="form-group">
+      		<div class="starRev">
+			  <span class="starR on">별1</span>
+			  <span class="starR">별2</span>
+			  <span class="starR">별3</span>
+			  <span class="starR">별4</span>
+			  <span class="starR">별5</span>
+			</div>
+      	</div>
+      	<input class="form-control" type="hidden"/>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" id="registerBtn">작성</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+      </div>
+    </div>
+  </div>
+</div>
+	
+<script>
+$(function(){
+	var reviewBtn = $(".reviewBtn");
+	var modal = $(".modal");
+	var registerBtn = $("#registerBtn");
+	
+	reviewBtn.on("click", function(){
+		modal.attr("data-id", $(this).data("id"));
+		modal.attr("data-pno", $(this).data("pno"));
+		modal.modal("show");
+	})
+	
+	$('.starRev span').click(function(){
+	  $(this).parent().children('span').removeClass('on');
+	  $(this).addClass('on').prevAll('span').addClass('on');
+	  return false;
+	});
+	
+	registerBtn.on("click", function(){
+		var title = modal.find("input[type='text']").val();
+		var content = modal.find("textarea").val();
+		var writer = modal.data("id");
+		var score = $(".on").length;
+		var pno = modal.data("pno");
+
+		if (title == '' || title.length == 0){
+			alert("제목을 입력해주세요.");
+			modal.find("input[type='text']").focus();
+			return;
+		}
+		if (content == '' || content.length == 0){
+			alert("제목을 입력해주세요.");
+			modal.find("textarea").focus();
+			return;
+		}
+		
+		var param = {
+			title:title,
+			content:content,
+			writer:writer,
+			score:score,
+			pno:pno
+		};
+		
+		$.ajax({
+			type : 'post',
+			url : '/review/add',
+			contentType : 'application/json;charset=utf-8',
+			data : JSON.stringify(param),
+			success : function(result){
+				modal.find("input").val("");
+				modal.find("textarea").val("");
+				modal.modal("hide");
+			}
+		});
+	})
+	
+})
+</script>
 <%@ include file="../include/footer.jsp" %>

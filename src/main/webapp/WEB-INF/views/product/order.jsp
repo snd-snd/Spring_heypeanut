@@ -9,6 +9,8 @@
 
 <script>
 $(function(){
+	var bno = '${bno}';
+	
 	var pno = '${info.product.pno}';
 	var pname = '${info.product.pname}';
 	var price = '${info.product.price}';
@@ -57,13 +59,34 @@ $(function(){
 				contentType : 'application/json;charset=utf-8',
 				data : JSON.stringify(param),
 				success : function(result){
-					var msg = '결제가 완료되었습니다.';
-					msg += '고유ID : ' + rsp.imp_uid;
-					msg += '상점 거래ID : ' + rsp.merchant_uid;
-					msg += '결제 금액 : ' + rsp.paid_amount;
-					msg += '카드 승인번호 : ' + rsp.apply_num;
-					alert(msg);
-					location.href='/order/history?id='+id;			
+					
+					if (bno != '' && bno.length != 0){
+					
+						$.ajax({
+							type : 'post',
+							url : '/order/basket/remove?bno='+bno,
+							contentType : 'application/json;charset=utf-8',
+							success : function(result){
+								
+								var msg = '결제가 완료되었습니다.';
+								msg += '고유ID : ' + rsp.imp_uid;
+								msg += '상점 거래ID : ' + rsp.merchant_uid;
+								msg += '결제 금액 : ' + rsp.paid_amount;
+								msg += '카드 승인번호 : ' + rsp.apply_num;
+								alert(msg);
+								location.href='/order/history?id='+id;		
+							}
+						});
+					} else {
+						
+						var msg = '결제가 완료되었습니다.';
+						msg += '고유ID : ' + rsp.imp_uid;
+						msg += '상점 거래ID : ' + rsp.merchant_uid;
+						msg += '결제 금액 : ' + rsp.paid_amount;
+						msg += '카드 승인번호 : ' + rsp.apply_num;
+						alert(msg);
+						location.href='/order/history?id='+id;								
+					}					
 				}
 			});
 			          

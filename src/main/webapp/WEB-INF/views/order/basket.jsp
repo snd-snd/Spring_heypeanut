@@ -12,7 +12,7 @@
 					<table class="table">
 					  <thead class="thead-dark">
 					    <tr>
-					      <th scope="col"><input type="checkbox" /></th>
+					      <th scope="col"><input type="checkbox" class="check-all" checked="checked"/></th>
 					      <th scope="col">이미지</th>
 					      <th scope="col">상품정보</th>
 					      <th scope="col">판매가</th>
@@ -25,7 +25,7 @@
 					  <tbody>
 					  	<c:forEach items="${list }" var="bas">
 						  	<tr>
-						      <td class="align-middle"><input type="checkbox" /></td>
+						      <td class="align-middle"><input type="checkbox" class="check-child" checked="checked"/></td>
 						      <td class="align-middle">
 							      <a href="/product/detail?pno=${bas.pno }" class="">
 									  <img src="/display?pno=${bas.pno }" alt="..." class="img-sample">
@@ -37,8 +37,8 @@
 						      <td class="align-middle">기본배송</td>
 						      <td class="align-middle plus"><fmt:formatNumber pattern="#,###원" value="${bas.price * bas.amount }"/></td>
 						      <td class="align-middle">
-						      	<button class="btn btn-outline-secondary btn-sm">주문</button> 
-						      	<button class="btn btn-secondary btn-sm removeBtn" data-bno="${bas.bno }">삭제</button>
+						      	<button class="btn btn-outline-secondary btn-sm orderBtn" data-bno="${bas.bno }" data-amount="${bas.amount }" data-id="${bas.id }" data-pno="${bas.pno }">주문</button> 
+						      	<button class="btn btn-secondary btn-sm removeBtn" data-bno="${bas.bno }" data-id="${bas.id }">삭제</button>
 						      </td>     
 						    </tr>
 					  	</c:forEach>					    	   
@@ -57,7 +57,12 @@
 					    </tr>		  
 					    <tr>
 					      <td><span class="pname" id="sum"></span></td>
-					      <td><span class="pname">2,500원</span></td>
+					      <c:if test="${empty list }">
+						      <td><span class="pname cost">0원</span></td>
+					      </c:if>
+					      <c:if test="${not empty list }">
+						      <td><span class="pname cost">2,500원</span></td>
+					      </c:if>
 					      <td><span class="pname" id="total"></span></td>
 					    </tr>
 					  </tbody>
@@ -72,8 +77,8 @@
 				</div> -->
 				
 				<div class="text-center">
-					<button class="btn btn-outline-danger btn-lg">상품결제하기</button>
-					<button class="btn btn-danger btn-lg">쇼핑계속하기</button>
+					<button class="btn btn-outline-danger btn-lg" id="payment">상품결제하기</button>
+					<button class="btn btn-danger btn-lg" onclick="location.href='/product/list?cate=all'">쇼핑계속하기</button>
 				</div>
 				<hr/>		
 			</section>
@@ -101,41 +106,94 @@
 			</section>
 		</div>
 	</div>
+	
+<form action="/product/order" method="post">
+	<input type="hidden" name="id"/>
+	<input type="hidden" name="pno"/>
+	<input type="hidden" name="amount"/>
+	<input type="hidden" name="bno"/>
+</form>	
 <script>
 $(function(){
 	var sum = 0;
-	
+	var form = $("form");	
+	var cost = parseInt(removeComma($(".cost").text()));
+		
 	$("tbody .plus").each(function(i, element) {		
 		var value = $(this).text();
 		sum += parseInt(removeComma(value));
 	})
 	
 	$("#sum").text(addComma(sum)+"원");
-	$("#total").text(addComma(sum+2500)+"원");
+	$("#total").text(addComma((sum+cost))+"원");
 	
 	
 	$("tbody").on("click", ".removeBtn", function(){
+		var flag = confirm("정말 삭제하시겠습니까?");
+		
+		if (!flag) return;
+		
+		var bno = $(this).data("bno");
+		var id = $(this).data("id");
+		
+ 		$.ajax({
+			type : 'post',
+			url : '/order/basket/remove?bno='+bno,
+			contentType : 'application/json;charset=utf-8',
+			success : function(result){
+				location.href="/order/basket?id="+id;		
+			}
+		}); 
+	})
+	
+	$("tbody").on("click", ".orderBtn", function(){
+
+		var amount = $(this).data("amount");
+		var pno = $(this).data("pno");
+		var id = $(this).data("id");
 		var bno = $(this).data("bno");
 		
-/* 		$.ajax({
-			type : 'post',
-			url : '/order/complete',
-			contentType : 'application/json;charset=utf-8',
-			data : JSON.stringify(param),
-			success : function(result){
-				var msg = '결제가 완료되었습니다.';
-				msg += '고유ID : ' + rsp.imp_uid;
-				msg += '상점 거래ID : ' + rsp.merchant_uid;
-				msg += '결제 금액 : ' + rsp.paid_amount;
-				msg += '카드 승인번호 : ' + rsp.apply_num;
-				alert(msg);
-				location.href='/order/history?id='+id;			
-			}
-		}); */
+		form.find("input[name='id']").val(id);
+		form.find("input[name='pno']").val(pno);
+		form.find("input[name='amount']").val(amount);
+		form.find("input[name='bno']").val(bno);
 		
+		form.submit();
+	})
+	
+	$("#payment").on("click", function(){
 		
 	})
 	
+	$("input[type='checkbox']").on("click", function(){
+		console.log("하핫");
+	})
+	
+	
+	//체크박스
+	var selectAll = document.querySelector(".check-all");
+    selectAll.addEventListener('click', function(){
+        var objs = document.querySelectorAll(".check-child");
+        for (var i = 0; i < objs.length; i++) {
+          objs[i].checked = selectAll.checked;
+        };
+    }, false);
+     
+    var objs = document.querySelectorAll(".check-child");
+    for(var i=0; i<objs.length ; i++){
+      objs[i].addEventListener('click', function(){
+        var selectAll = document.querySelector(".check-all");
+        for (var j = 0; j < objs.length; j++) {
+          if (objs[j].checked === false) {
+            selectAll.checked = false;
+            return;
+          };
+        };
+        selectAll.checked = true;                                   
+    }, false);
+    } 
+
+
 	
 })
 
@@ -150,5 +208,15 @@ function removeComma(num) {
 	regexp = /\원/g;
 	return temp.toString().replace(regexp, '');
 }
+
+/* function check(){
+	if ($(".check-all").is(':checked')){
+		$("input[type='checkbox']").remove("checked");
+		$("input[type='checkbox']").attr("checked", true);
+	} else {
+		$("input[type='checkbox']").remove("checked");
+		$("input[type='checkbox']").attr("checked", false);
+	}
+} */
 </script>	
 <%@ include file="../include/footer.jsp" %>

@@ -7,7 +7,7 @@
 	</insert>
 
 	<select id="basket" resultType="com.heypeanut.domain.BasketVO">
-		select basket.pno as pno, pname, amount, basket.price as price, regDate from basket, product
+		select bno, id, basket.pno as pno, pname, amount, basket.price as price, regDate from basket, product
 		where basket.pno = product.pno and id = #{id} order by bno desc
 	</select>
 	

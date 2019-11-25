@@ -35,7 +35,31 @@
        		pno>0
 		]]>		
 	</select>
+	
+	<select id="topList" resultType="com.heypeanut.domain.ProductVO">
+		<![CDATA[ 
+			select pno, category, pname, price from
+				(select pno, category, pname, price from product order by score desc)
+			where rownum <= 4
+		]]> 
+	</select>
 
+	<select id="newList" resultType="com.heypeanut.domain.ProductVO">
+		<![CDATA[ 
+			select pno, category, pname, price from
+				(select pno, category, pname, price from product order by pno desc)
+			where rownum <= 8
+		]]> 
+	</select>
+	
+	<select id="weekList" resultType="com.heypeanut.domain.ProductVO">
+		<![CDATA[ 
+			select pno, category, pname, price from
+				(select pno, category, pname, price from product order by weekCount desc)
+			where rownum <= 4
+		]]> 
+	</select>
+	
 	<select id="listTotalCount" resultType="int">
     	<![CDATA[
 			select count(*) from product
@@ -51,6 +75,21 @@
 		select * from product where pno = ${pno}
 	</select>
 
+	<update id="scoreUp">
+		<![CDATA[
+			update product set score = score + #{score} where pno = #{pno}
+		]]>
+	</update>
+
+	<update id="weekUp">
+		<![CDATA[
+			update product set weekCount = weekCount + #{amount} where pno = #{pno}
+		]]>
+	</update>
+
+	<update id="weekSet">		
+		update product set weekCount = 0;
+	</update>
 
 	<!-- 동적 SQL문 : 재사용 가능 -->
 	<sql id="criteria">

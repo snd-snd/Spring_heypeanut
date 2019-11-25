@@ -38,7 +38,7 @@
 				</div>
 			</section>
 			<section>
-				 <!-- 페이징 처리 -->
+				<!-- 페이징 처리 -->
 				<div class="">
 					<ul class="pagination justify-content-center">
 						<c:if test="${page.prev }">
@@ -58,7 +58,8 @@
 						</c:if>	
 					</ul>
 				</div>
-							
+			</section>
+			<section>
 				<div class="row">
 					<div class="col-md-3">					
 						<form action="" method="get" id="search">
@@ -88,20 +89,16 @@
 		<input type="hidden" name="keyword" value="${page.criteria.keyword }" />
 	</form>
 	
-	<script>
+<script>
+$(function(){
+	var form = $("#form");
 	
-	$(function(){
-		var form = $("#form");
+	$(".page-item a").click(function(e){
+		e.preventDefault(); //a태그의 동작을 막는 함수
 		
-		$(".page-item a").click(function(e){
-			e.preventDefault(); //a태그의 동작을 막는 함수
-			
-			form.find("input[name='pageNum']").val($(this).attr("href"));			
-			form.submit();
-		})
+		form.find("input[name='pageNum']").val($(this).attr("href"));			
+		form.submit();
 	})
-	
-	
-	
-	</script>
+})
+</script>
 <%@ include file="../../include/footer.jsp" %>

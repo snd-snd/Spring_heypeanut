@@ -27,6 +27,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 	
+	<script src="/resources/ckeditor/ckeditor.js"></script>	
 	<link rel="stylesheet" href="/resources/css/heypeanut.css" />
 	<title>야! 땅콩! - 노화 방지, 성인병 예방, 항암 효과 등 몸에 좋은 식품</title>
 </head>
@@ -79,7 +80,7 @@
 				  </c:if>  					
 				</c:if>						  
 				  <li class="nav-item">
-				    <a class="nav-link" href="#">Q & A</a>
+				    <a class="nav-link" href="/qna/list">Q & A</a>
 				  </li>						
 			</ul>
 		</nav>

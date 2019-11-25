@@ -9,6 +9,8 @@ public class ProductVO {
 	private String category;
 	private String pname;
 	private int price;
+	private int score;
+	private int weekcCount;
 	
 	private AttachVO attach;
 	

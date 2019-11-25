@@ -7,7 +7,7 @@
 	</insert>
 
 	<select id="history" resultType="com.heypeanut.domain.OrderVO">
-		select orders.pno as pno, pname, amount, total, regDate, status from orders, product
+		select id, orders.pno as pno, pname, amount, total, regDate, status from orders, product
 		where orders.pno = product.pno and id = #{id} order by ono desc
 	</select>
 </mapper>

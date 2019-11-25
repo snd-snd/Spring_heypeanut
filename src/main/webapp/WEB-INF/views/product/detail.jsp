@@ -81,66 +81,14 @@
 						        <th>평점</th>
 					    	</tr>
 					    </thead>
-					    <tbody>
-					    	<tr>
-						        <td>1</td>
-						        <td>최고의 주전부리</td>
-						        <td>김태호</td>
-						        <td>★★★★★</td>
-					    	</tr>
-						    <tr>
-						        <td>2</td>
-						        <td>맛있다.</td>
-						        <td>이규호</td>
-						        <td>★★★</td>
-						    </tr>
-						    <tr>
-						        <td>3</td>
-						        <td>킹갓드</td>
-						        <td>최성호</td>
-						        <td>★★★★</td>
-						    </tr>
-						    <tr>
-						        <td>4</td>
-						        <td>재주문하려구요.</td>
-						        <td>박찬호</td>
-						        <td>★★★★</td>
-						    </tr>
-						    <tr>
-						        <td>5</td>
-						        <td>비피더스 명장</td>
-						        <td>이재영</td>
-						        <td>★★</td>
-						    </tr>     
+					    <!-- 리뷰가 들어오는 곳 스크립트 처리 -->
+					    <tbody class="reviewContent">
 					    </tbody>
-					</table>
-				 
-					<!-- 페이징 처리 -->
-					<div class="">
-						<ul class="pagination pagination-sm justify-content-center">
-						  	<li class="page-item">
-						    	<a class="page-link" href="#">&laquo;</a>
-						    </li>
-						    <li class="page-item active">
-						    	<a class="page-link" href="#">1</a>
-						    </li>
-						    <li class="page-item">
-						    	<a class="page-link" href="#">2</a>
-						    </li>
-						    <li class="page-item">
-						    	<a class="page-link" href="#">3</a>
-						    </li>
-						    <li class="page-item">
-						    	<a class="page-link" href="#">4</a>
-						    </li>
-						    <li class="page-item">
-						    	<a class="page-link" href="#">5</a>
-						    </li>
-						    <li class="page-item">
-						    	<a class="page-link" href="#">&raquo;</a>
-						    </li>
-						</ul>
+					</table>			 
+					<!-- 페이징 스크립트 처리-->
+					<div class="reviewPage">										
 					</div>
+					
 				</div>
 			</div>
 		</section>
@@ -245,13 +193,17 @@
 	<input type="hidden" name="pno" value="${pro.pno }"/>
 	<input type="hidden" name="price" value="${pro.price }"/>
 	<input type="hidden" name="amount" value=""/>
-</form>	
+	<input type="hidden" name="bno" value="0"/>
+</form>
+<script src="/resources/js/review.js"></script>
 <script>
 $(function(){
 	var amount = $("input[name='amount']");
-	var form = $("#form");
-	
+	var form = $("#form");	
 	var modal = $(".modal");
+	var pno = '${pro.pno }';
+	
+	reviewList(1); //리뷰 보여주기
 	
 	$("input[type='number']").on("change", function(){		
 		var price = '${pro.price }';
@@ -290,11 +242,90 @@ $(function(){
 			}
 		}); 	 
 	})
+	var reviewContent = $(".reviewContent");
+	var reviewPage = $(".reviewPage");
+	var pageNum = 1;
+	
+		
+	// 리뷰 리스트 보여주기
+	function reviewList(page){
+		reviewService.getList({pno:pno,page:page}, function(reviews,total){
+			reviewContent.html("");
+			if (reviews == null || reviews.length == 0){
+				return;
+			}			
+			if (page == -1){
+				pageNum=Math.ceil(total/5.0);
+				reviewList(pageNum)
+				return;
+			}
+			
+			var html = "";
+			
+			for (var i=0, len=reviews.length||0; i<len; i++){				
+				html += "<tr>";
+				html += "<td>"+reviews[i].rno+"</td>";
+				html += "<td>"+reviews[i].title+"</td>";								
+				html += "<td>"+reviews[i].name+"</td>";
+				html += "<td>"+star(reviews[i].score)+"</td>";
+				html += "</tr>";
+			}
+			reviewContent.html(html);
+			reviewPaging(total);
+		});		
+	}
+
+	// 리뷰 페이징 생성
+	function reviewPaging(total){
+		
+		var endPage = Math.ceil(pageNum / 5.0)*5; //마지막 페이지 계산
+		var startPage = endPage-4; //시작 페이지
+		var prev = startPage != 1; //이전 버튼
+		var next = false; //다음 버튼
+		
+		if (endPage*5 >= total){
+			endPage = Math.ceil(total/5.0);
+		}
+		if (endPage*5 < total){
+			next = true;
+		}
+			
+		var html = "<ul class='pagination pagination-sm justify-content-center'>";
+
+		if (prev){
+			html += "<li class='page-item'><a class='page-link' href='"+(startPage-1)+"'>&laquo;</a></li>";
+		}		
+		for (var i=startPage; i<=endPage; i++){
+			var active = pageNum == i? "active":"";		
+			html += "<li class='page-item "+active+"'>";
+			html += "<a class='page-link' href='"+i+"'>"+i+"</a></li>";
+		}			
+		if (next){
+			html += "<li class='page-item'><a class='page-link' href='"+(endPage+1)+"'>&laquo;</a></li>";
+		}			
+		html += "</ul>";			
+		reviewPage.html(html);
+	}
+		
+	// 리뷰 페이지 이동
+	reviewPage.on("click", "li a", function(e){
+		e.preventDefault();	
+		pageNum = $(this).attr("href");
+		reviewList(pageNum);
+	})
 })
 
 function addComma(num) {
   var regexp = /\B(?=(\d{3})+(?!\d))/g;
   return num.toString().replace(regexp, ',');
+}
+
+function star(num) {
+	var str = "";
+	for (var i=0; i<num; i++){
+		str += "★";  
+	}
+	return str.toString();
 }
 </script>
 <%@ include file="../include/footer.jsp" %>     

@@ -19,10 +19,80 @@
 			<div class="swiper-pagination"></div>
 		</div>
 	</div>
-	<section>
+	<div class="main">	
 		<div class="container">
+			<div class="text-center">
+				<h3>주간 랭크 상품</h3>
+				<hr />
+			</div>	
+			<section>
+				<div class="row">
+					<c:forEach items="${weekList }" var="pro">
+						<div class="col-md-3">
+							<div class="img">
+								<div class="scale">
+									<a href="/product/detail?pno=${pro.pno }" class="">
+						      			<img src="/display?pno=${pro.pno }" alt="..." class="img-thumbnail">
+						  			</a>
+					  			</div>
+				  			</div>
+				  			<div class="text-center">
+				  				<p class="">${pro.pname }<br/><span class="pname"><fmt:formatNumber pattern="#,###원" value="${pro.price }"/></span></p>
+				  			</div>
+						</div>		
+					</c:forEach>
+				</div>
+			</section>
+		</div>			
+		<div class="container">
+			<div class="text-center">
+				<h3>신상품</h3>
+				<hr />
+			</div>
+			<section>
+				<div class="row">
+					<c:forEach items="${newList }" var="pro">
+						<div class="col-md-3">
+							<div class="img">
+								<div class="scale">
+									<a href="/product/detail?pno=${pro.pno }" class="">
+						      			<img src="/display?pno=${pro.pno }" alt="..." class="img-thumbnail">
+						  			</a>
+					  			</div>
+				  			</div>
+				  			<div class="text-center">
+				  				<p class="">${pro.pname }<br/><span class="pname"><fmt:formatNumber pattern="#,###원" value="${pro.price }"/></span></p>
+				  			</div>
+						</div>		
+					</c:forEach>
+				</div>
+			</section>
 		</div>
-	</section>
+		<div class="container">
+			<div class="text-center">
+				<h3>베스트 리뷰 상품</h3>
+				<hr />
+			</div>	
+			<section>
+				<div class="row">
+					<c:forEach items="${topList }" var="pro">
+						<div class="col-md-3">
+							<div class="img">
+								<div class="scale">
+									<a href="/product/detail?pno=${pro.pno }" class="">
+						      			<img src="/display?pno=${pro.pno }" alt="..." class="img-thumbnail">
+						  			</a>
+					  			</div>
+				  			</div>
+				  			<div class="text-center">
+				  				<p class="">${pro.pname }<br/><span class="pname"><fmt:formatNumber pattern="#,###원" value="${pro.price }"/></span></p>
+				  			</div>
+						</div>		
+					</c:forEach>
+				</div>
+			</section>
+		</div>
+	</div>
 	<!-- main end -->
 
 <script>

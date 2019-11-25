@@ -52,6 +52,17 @@ fileName varchar2(100) not null,
 pno number,
 constraint fk_product_a foreign key (pno) references product (pno) on delete cascade);
 
+create table review(
+bno number,
+title varchar2(100),
+content varchar2(500),
+writer varchar2(100),
+regDate date default sysdate,
+pno number,
+constraint pk_review primary key (bno),
+constraint fk_product_r foreign key (pno) references product (pno) on delete cascade);
+
+create sequence seq_review;
 
 drop table members;
 drop table product;
