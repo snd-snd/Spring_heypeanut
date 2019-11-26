@@ -13,4 +13,6 @@ public interface QNAMapper {
 	
 	QNAVO read(int qno);
 	boolean readUp(int qno);
+	boolean modify(QNAVO qna);
+	boolean remove(int qno);
 }

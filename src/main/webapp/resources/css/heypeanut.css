@@ -107,3 +107,11 @@ section {
 .review-content {
 	margin-bottom: 20px;
 }
+
+a#MOVE_TOP_BTN {
+    position: fixed;
+    right: 2%;
+    bottom: 50px;
+    display: none;
+    z-index: 999;
+}

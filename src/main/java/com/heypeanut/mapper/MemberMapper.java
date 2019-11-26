@@ -8,4 +8,5 @@ public interface MemberMapper {
 	boolean join(MemberVO member);
 	LoginVO login(MemberVO member);
 	MemberVO read(String id);
+	MemberVO checkId(String id);
 }

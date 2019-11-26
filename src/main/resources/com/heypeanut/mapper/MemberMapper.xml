@@ -13,5 +13,9 @@
 	<select id="read" resultType="com.heypeanut.domain.MemberVO">
 		select * from members where id = #{id}
 	</select>
+	
+	<select id="checkId" resultType="com.heypeanut.domain.MemberVO">
+		select * from members where id = #{id}
+	</select>
 
 </mapper>

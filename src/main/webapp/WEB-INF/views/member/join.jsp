@@ -1,13 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../include/header.jsp" %>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.js"></script>
+<script src="/resources/js/join.js"></script>
 	<div class="main">
 		<section>
 			<div class="container">
 				<h3><strong>회원정보 입력</strong></h3>
 				<hr />
 				<div class="form-md">
-					<form method="post">
+					<form method="post" id="join">
 					  <div class="form-group">
 					    <input type="text" class="form-control" id="id" name="id" aria-describedby="idHelp" placeholder="아이디">
 					    <small id="idHelp" class="form-text text-muted"></small>
@@ -34,17 +36,21 @@
 					  </div>
 					  <div class="form-group">
 						<input class="form-control col-md-3" type="text" id="postcode" name="postcode" placeholder="우편번호" style="display: inline;">
-						<button class="btn btn-secondary" type="button" onclick="execDaumPostcode()">우편번호 찾기</button>		  			  
+						<button class="btn btn-secondary" type="button" onclick="execDaumPostcode()">우편번호 찾기</button>
+						<small id="postcodeHelp" class="form-text text-muted"></small>		  			  
 					  </div>
 					  <div class="form-group">
 					  	<input class="form-control" type="text" id="roadAddress" name="roadAddress" placeholder="도로명주소">
+					  	<small id="roadAddressHelp" class="form-text text-muted"></small>
 					  </div>
 					  <div class="form-group">
 					  	<input class="form-control" type="text" id="jibunAddress" name="jibunAddress" placeholder="지번주소">
-					  	<span id="guide" style="color:#999;display:none"></span>	
+					  	<span id="guide" style="color:#999;display:none"></span>
+					  	<small id="jibunAddressHelp" class="form-text text-muted"></small>
 					  </div>
 					  <div class="form-group">
-					  	<input class="form-control" type="text" id="detailAddress" name="detailAddress" placeholder="상세주소">	
+					  	<input class="form-control" type="text" id="detailAddress" name="detailAddress" placeholder="상세주소">
+					  	<small id="detailAddressHelp" class="form-text text-muted"></small>	
 					  </div>
 					  
 					  <div class="form-group">
@@ -147,7 +153,8 @@
 						</textarea>
 					  </div>
 					  <div class="form-group">
-					  	<input class="" type="checkbox" id="consent"> 약관동의 (필수)	
+					  	<input type="checkbox" id="consent" name="consent"> 약관동의 (필수)
+					  	<small id="consentHelp" class="form-text text-muted"></small>	
 					  </div>
 					  <button type="submit" class="btn btn-primary">가입하기</button>
 					</form>
@@ -155,6 +162,7 @@
 			</div>
 		</section>
 	</div>
+
 
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>

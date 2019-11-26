@@ -12,4 +12,6 @@ public interface QNAService {
 	int listTotalCount(Criteria cri);
 	
 	QNAVO read(int qno);
+	boolean modify(QNAVO qna);
+	boolean remove(int qno);
 }

@@ -5,7 +5,7 @@
 		<selectKey keyProperty="pno" order="BEFORE" resultType="int">
 			select seq_product.nextVal from dual
 		</selectKey>
-		insert into product values (#{pno}, #{category}, #{pname}, #{price})
+		insert into product (pno, category, pname, price) values (#{pno}, #{category}, #{pname}, #{price})
 	</insert>
 	
 	<!-- 페이지 나누기가 적용된 리스트 가져오기 -->

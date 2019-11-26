@@ -147,6 +147,11 @@ $(function(){
 				modal.find("input").val("");
 				modal.find("textarea").val("");
 				modal.modal("hide");
+				var flag = confirm("후기가 작성되었습니다. 확인하시겠습니까?");
+				if (flag){
+					location.href = '/product/detail?pno='+pno+"&message=true";
+				}
+				
 			}
 		});
 	})

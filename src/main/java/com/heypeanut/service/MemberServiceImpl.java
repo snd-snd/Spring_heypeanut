@@ -22,5 +22,10 @@ public class MemberServiceImpl implements MemberService {
 	public LoginVO login(MemberVO member) {
 		return m_mapper.login(member);
 	}
+	
+	@Override
+	public MemberVO checkId(String id) {
+		return m_mapper.checkId(id);
+	}
 
 }

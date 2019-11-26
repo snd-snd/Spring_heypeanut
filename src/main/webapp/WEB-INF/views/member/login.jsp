@@ -23,7 +23,7 @@
 					  </div>
 					</form>		
 					<div>						
-					  	<button type="submit" class="btn btn-outline-secondary login-button">회원가입</button>
+					  	<button type="submit" class="btn btn-outline-secondary login-button" onclick="location.href='/member/joinInfo'">회원가입</button>
 					  	<button type="submit" class="btn btn-outline-secondary login-button">아이디/비밀번호 찾기</button>						
 					</div>	
 				</div>
@@ -38,4 +38,9 @@
 			</section>
 		</div>
 	</div>
+<script>
+	$(function(){
+		
+	})
+</script>
 <%@ include file="../include/footer.jsp" %>

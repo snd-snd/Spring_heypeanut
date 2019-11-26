@@ -94,7 +94,7 @@
 		</section>
 		
 		<!-- Q & A -->
-		<section>
+		<!-- <section>
 			<div class="container">		
 				<div>
 					<h6>Q & A</h6>            
@@ -143,7 +143,7 @@
 					    </tbody>
 					</table>
 				 
-				 <!-- 페이징 처리 -->
+				 페이징 처리
 					<div class="">
 						<ul class="pagination pagination-sm justify-content-center">
 							<li class="page-item">
@@ -171,7 +171,7 @@
 					</div>
 				</div>
 			</div>
-		</section>			
+		</section> -->			
 	</div>	
 <!-- Modal -->
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -248,6 +248,14 @@ $(function(){
 	var reviewContent = $(".reviewContent");
 	var reviewPage = $(".reviewPage");
 	var pageNum = 1;
+	
+	
+	var message = '${message}';
+	
+	if (message == 'true'){
+		var offset = reviewContent.offset();
+		$('html').animate({scrollTop : offset.top}, 400);
+	}
 	
 	// 개별 리뷰 클릭시 이벤트
 	reviewContent.on("click", "tr", function(){

@@ -7,4 +7,5 @@ public interface MemberService {
 
 	boolean join(MemberVO member);
 	LoginVO login(MemberVO member);
+	MemberVO checkId(String id);
 }

@@ -62,7 +62,7 @@
 			<section>
 				<div class="row">
 					<div class="col-md-3">					
-						<form action="" method="get" id="search">
+						<form action="" method="get">
 							<div class="form-group">
 								<div class="input-group">
 									<input type="hidden" class="form-control" name="type" value="name">

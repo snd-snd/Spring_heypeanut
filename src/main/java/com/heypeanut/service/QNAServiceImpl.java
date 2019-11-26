@@ -38,4 +38,13 @@ public class QNAServiceImpl implements QNAService {
 		return q_mapper.read(qno);
 	}
 
+	@Override
+	public boolean modify(QNAVO qna) {
+		return q_mapper.modify(qna);
+	}
+	
+	@Override
+	public boolean remove(int qno) {
+		return q_mapper.remove(qno);
+	}
 }

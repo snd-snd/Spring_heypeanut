@@ -43,6 +43,14 @@
 		]]>
 	</update>
 	
+	<update id="modify">		
+		update qna set title = #{title}, content = #{content} where qno = #{qno}		
+	</update>
+	
+	<delete id="remove">
+		delete from qna where qno = #{qno}
+	</delete>
+	
 	<!-- 동적 SQL문 : 재사용 가능 -->
 	<sql id="criteria">
 		<trim prefix="(" suffix=") AND" prefixOverrides="OR">

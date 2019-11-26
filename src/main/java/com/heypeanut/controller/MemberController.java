@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
@@ -67,5 +68,18 @@ public class MemberController {
 		if (!status.isComplete())
 			status.setComplete();
 		return "redirect:/";
+	}
+	
+	@ResponseBody
+	@PostMapping("/checkId")
+	public String checkId(String id) {
+		
+		MemberVO member = m_service.checkId(id);
+		
+		if (member == null)
+			return "true";
+		else
+			return "false";
+		
 	}
 }

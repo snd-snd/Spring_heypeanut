@@ -52,7 +52,7 @@ public class ProductController {
 	}
 	
 	@GetMapping("/detail")
-	public void read(Model model, int pno) {
+	public void read(Model model, int pno, String message) {
 		log.info("CategoryController -> 해당 제품을 GET");
 				
 		ProductVO product = p_service.detail(pno);
@@ -60,6 +60,9 @@ public class ProductController {
 		
 		if (product != null) {
 			model.addAttribute("pro", product);
+			if (message != null) {
+				model.addAttribute("message", message);
+			}
 		}
 		
 	}

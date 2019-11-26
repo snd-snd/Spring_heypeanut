@@ -23,7 +23,7 @@
 				  	<c:forEach items="${list }" var="qna">
 				  		 <tr>
 						     <td>${qna.qno }</td>
-						     <td><a href="/qna/read?qno=${qna.qno }"></a>${qna.title }</td>
+						     <td><a href="${qna.qno }" class="read">${qna.title }</a></td>
 						     <td>${qna.name }</td>
 						     <td><fmt:formatDate pattern="yyyy-MM-dd hh:mm:ss" value="${qna.regDate }"/></td>
 						     <td>${qna.hit }</td>
@@ -84,24 +84,29 @@
 							</div>				
 						</form>
 					</div>
-					<div class="col-md-3 ml-auto">
-						<button class="btn btn-primary btn-lg" style="width: 200px;" onclick="location.href='/qna/register'">글쓰기</button>
-					</div>
+					<c:if test="${not empty login }">
+						<div class="col-md-3 ml-auto">
+							<button class="btn btn-primary btn-lg" style="width: 200px;" id="registerBtn">글쓰기</button>
+						</div>
+					</c:if>
 				</div>
 			</section>
 		</div>
 	</div>
 	
-	<form action="" id="form">
-		<input type="hidden" name="pageNum" value="${page.criteria.pageNum }" />
-		<input type="hidden" name="amount" value="${page.criteria.amount }" />
-		<input type="hidden" name="type" value="${page.criteria.type }" />
-		<input type="hidden" name="keyword" value="${page.criteria.keyword }" />
-	</form>
+<form action="" id="form">
+	<input type="hidden" name="qno"/>
+	<input type="hidden" name="pageNum" value="${page.criteria.pageNum }" />
+	<input type="hidden" name="amount" value="${page.criteria.amount }" />
+	<input type="hidden" name="type" value="${page.criteria.type }" />
+	<input type="hidden" name="keyword" value="${page.criteria.keyword }" />
+</form>
+
 	
 <script>
 $(function(){
 	var form = $("#form");
+	
 	var searchForm2 = $("#searchForm2");	
 	var type = '${page.criteria.type}';
 	var keyword = '${page.criteria.keyword}';
@@ -125,7 +130,19 @@ $(function(){
 		}		
 		searchForm2.find("input[type='hidden']").val($("#division").val());	
 		searchForm2.submit();
-	})		
+	})
+	
+	$("#registerBtn").click(function(){
+		form.attr("action", "/qna/register");
+		form.submit();
+	})
+	
+	$(".read").click(function(e){
+		e.preventDefault();
+		form.attr("action", "/qna/read");
+		form.find("input[name='qno']").val($(this).attr("href"));
+		form.submit();
+	})
 })
 </script>
 <%@ include file="../include/footer.jsp" %>
