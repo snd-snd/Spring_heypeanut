@@ -1,5 +1,7 @@
 package com.heypeanut.domain;
 
+import java.util.Date;
+
 import lombok.Data;
 
 @Data
@@ -15,6 +17,9 @@ public class MemberVO {
 	private String roadAddress;
 	private String jibunAddress;
 	private String detailAddress;
+	private Date regDate;
+	private String authkey;
+	private int authstatus;
 	
 	
 	

@@ -30,10 +30,10 @@
 	<input type="hidden" name="qno" value="${qna.qno }">
 	<input type="hidden" name="title">
 	<input type="hidden" name="content">
-	<input type="hidden" name="pageNum" value="${cri.pageNum }"/>
-	<input type="hidden" name="amount" value="${cri.amount }"/>
-	<input type="hidden" name="type" value="${cri.type }" />
-	<input type="hidden" name="keyword" value="${cri.keyword }" />	
+	<input type="hidden" name="pageNum" value="${cri.pageNum }">
+	<input type="hidden" name="amount" value="${cri.amount }">
+	<input type="hidden" name="type" value="${cri.type }">
+	<input type="hidden" name="keyword" value="${cri.keyword }">	
 </form>
 <script>
 $(function(){

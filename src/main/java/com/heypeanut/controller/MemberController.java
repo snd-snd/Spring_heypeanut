@@ -4,11 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.heypeanut.domain.LoginVO;
 import com.heypeanut.domain.MemberVO;
@@ -36,13 +38,22 @@ public class MemberController {
 	}
 	
 	@PostMapping("/join")
-	public String join(MemberVO member) {
+	public String join(MemberVO member, RedirectAttributes rttr) throws Exception {
 		log.info("MemberController -> 회원가입 요청");
 		if(m_service.join(member)) {
-			return "/member/login";
+			rttr.addFlashAttribute("authmsg" , "이메일 인증 후 사용가능합니다.");
+			return "redirect:/member/login";
 		}
 		
-		return "/member/join";
+		return "redirect:/member/join";
+	}
+	
+	@GetMapping("/emailConfirm")
+	public String emailConfirm(String id, Model model) throws Exception { // 이메일인증
+		m_service.updateAuthStatus(id);
+		model.addAttribute("id", id);
+
+		return "/member/emailConfirm";
 	}
 	
 	@GetMapping("/login")

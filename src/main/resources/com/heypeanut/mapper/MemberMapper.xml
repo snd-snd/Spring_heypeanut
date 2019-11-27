@@ -7,7 +7,7 @@
 	</insert>
 
 	<select id="login" resultType="com.heypeanut.domain.LoginVO">
-		select id, name from members where id = #{id} and password = #{password}
+		select id, name from members where id = #{id} and password = #{password} and authstatus = 1
 	</select>
 	
 	<select id="read" resultType="com.heypeanut.domain.MemberVO">
@@ -17,5 +17,16 @@
 	<select id="checkId" resultType="com.heypeanut.domain.MemberVO">
 		select * from members where id = #{id}
 	</select>
+	
+	<select id="userList" resultType="com.heypeanut.domain.MemberVO">
+		select * from members
+	</select>
 
+	<update id="updateAuthKey">
+		update members set authkey = #{authkey} where id = #{id}
+	</update>
+	
+	<update id="updateAuthStatus">
+		update members set authstatus = 1 where id = #{id}
+	</update>	
 </mapper>

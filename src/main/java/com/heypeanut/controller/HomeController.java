@@ -34,6 +34,29 @@ public class HomeController {
 		return "/index";
 	}
 	
+	@GetMapping("/intro")
+	public void inrto() {
+		log.info("인트로 요청");
+	}
 	
+	@GetMapping("/error/error400")
+	public void error400() {
+		log.info("400 에러페이지 요청");
+	}
+	
+	@GetMapping("/error/error404")
+	public void error404() {
+		log.info("404 에러페이지 요청");
+	}
+	
+	@GetMapping("/error/error500")
+	public void error500() {
+		log.info("500 에러페이지 요청");
+	}
+
+	@GetMapping("/error/error")
+	public void error() {
+		log.info("기타 에러페이지 요청");
+	}
 	
 }

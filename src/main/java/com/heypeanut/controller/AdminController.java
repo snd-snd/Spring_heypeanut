@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.heypeanut.domain.MemberVO;
 import com.heypeanut.domain.PageVO;
 import com.heypeanut.domain.ProductVO;
+import com.heypeanut.service.MemberService;
 import com.heypeanut.service.ProductService;
 import com.heypeanut.util.Criteria;
 
@@ -23,10 +25,17 @@ public class AdminController {
 
 	@Autowired
 	ProductService p_service;
+	@Autowired
+	MemberService m_service;
 	
 	@GetMapping("/customer/list")
-	public void customerList() {
+	public void customerList(Model model) {
 		log.info("AdminController -> 회원관리 페이지 요청");
+		
+		List<MemberVO> list = m_service.userList();
+		if (!list.isEmpty()) {
+			model.addAttribute("list", list);
+		}
 	}
 	
 	@GetMapping("/product/list")

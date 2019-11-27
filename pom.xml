@@ -106,7 +106,6 @@
 		</dependency>
 
 		<!-- OJDBC6 -->
-		<!-- https://mvnrepository.com/artifact/com.jslsolucoes/ojdbc6 -->
 		<dependency>
 		    <groupId>com.jslsolucoes</groupId>
 		    <artifactId>ojdbc6</artifactId>
@@ -114,7 +113,6 @@
 		</dependency>
 		
         <!-- 마이바티스 -->
-		<!-- https://mvnrepository.com/artifact/org.mybatis/mybatis -->
 		<dependency>
 			<groupId>org.mybatis</groupId>
 			<artifactId>mybatis</artifactId>
@@ -122,44 +120,44 @@
 		</dependency>
 		
         <!-- 마이바티스 스프링 -->
-		<!-- https://mvnrepository.com/artifact/org.mybatis/mybatis-spring -->
 		<dependency>
 		    <groupId>org.mybatis</groupId>
 		    <artifactId>mybatis-spring</artifactId>
 		    <version>1.3.2</version>
 		</dependency>
 		  
-        <!-- 스프링 JDBC -->
-		<!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
+        <!-- 스프링 JDBC -->		
 		<dependency>
 		    <groupId>org.springframework</groupId>
 		    <artifactId>spring-jdbc</artifactId>
 		    <version>5.2.0.RELEASE</version>
 		</dependency>
         
-        <!-- JSON -->
-		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+        <!-- JSON -->	
 		<dependency>
 		    <groupId>com.fasterxml.jackson.core</groupId>
 		    <artifactId>jackson-databind</artifactId>
 		    <version>2.10.0</version>
 		</dependency>
 
-		<!-- 파일 업로드 -->
-        <!-- https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload -->
+		<!-- 파일 업로드 -->    
         <dependency>
             <groupId>commons-fileupload</groupId>
             <artifactId>commons-fileupload</artifactId>
             <version>1.4</version>
         </dependency>
         
-		<!-- 섬네일 -->
-        <!-- https://mvnrepository.com/artifact/net.coobird/thumbnailator -->
-        <dependency>
-            <groupId>net.coobird</groupId>
-            <artifactId>thumbnailator</artifactId>
-            <version>0.4.8</version>
-        </dependency>
+		<!-- 메일 인증 -->
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>1.4.7</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
 
 	</dependencies>
     <build>

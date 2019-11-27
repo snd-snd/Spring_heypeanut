@@ -40,7 +40,10 @@
 	</div>
 <script>
 	$(function(){
-		
+		var authmsg = '${authmsg}';
+		if (authmsg.length != 0){
+			alert(authmsg);
+		}
 	})
 </script>
 <%@ include file="../include/footer.jsp" %>

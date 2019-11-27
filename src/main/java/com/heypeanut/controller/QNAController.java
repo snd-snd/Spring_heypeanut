@@ -28,7 +28,7 @@ public class QNAController {
 	
 	@GetMapping("/list")
 	public void list(Model model, Criteria cri) {
-		log.info("QNAController -> QNA 게시판 요청");
+		log.info("QNAController -> QNA 게시판 요청: "+cri);
 		
 		List<QNAVO> list = q_service.list(cri);
 		if (!list.isEmpty()) {
@@ -40,13 +40,13 @@ public class QNAController {
 	
 	@GetMapping("/register")
 	public void register(@ModelAttribute("cri") Criteria cri) {
-		log.info("QNAController -> QNA 글쓰기 요청");
+		log.info("QNAController -> QNA 글쓰기 요청: "+cri);
 		
 	}
 	
 	@PostMapping("/register")
 	public String register(QNAVO qna) {
-		log.info("QNAController -> QNA 글쓰기");
+		log.info("QNAController -> QNA 글쓰기: "+qna);
 		
 		q_service.register(qna);
 	
@@ -55,7 +55,7 @@ public class QNAController {
 	
 	@GetMapping({"/read", "/modify"})
 	public void read(Model model, int qno, @ModelAttribute("cri") Criteria cri) {
-		log.info("QNAController -> QNA 긁읽기/글수정 요청");
+		log.info("QNAController -> QNA 긁읽기/글수정 요청: "+qno+","+cri);
 		
 		QNAVO qna = q_service.read(qno);
 		if (qna != null) {
@@ -70,12 +70,12 @@ public class QNAController {
 	
 	@PostMapping("/modify")
 	public String modify(QNAVO qna, Criteria cri, RedirectAttributes rttr) {
-		log.info("QNAController -> QNA 글수정");
+		log.info("QNAController -> QNA 글수정: "+qna+","+cri);
 			
 		if (q_service.modify(qna)) {
 			rttr.addAttribute("pageNum", cri.getPageNum());
-			rttr.addAttribute("amount", cri.getAmount());
-			rttr.addAttribute("type", cri.getType());
+			rttr.addAttribute("amount", cri.getAmount());		
+			rttr.addAttribute("type", cri.getType());			
 			rttr.addAttribute("keyword", cri.getKeyword());
 		}	
 	
@@ -84,7 +84,7 @@ public class QNAController {
 	
 	@PostMapping("/remove")
 	public String remove(int qno, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
-		log.info("QNAController => 글삭제: "+qno);
+		log.info("QNAController => 글삭제: "+qno+","+cri);
 				
 		if (q_service.remove(qno)) {
 			rttr.addAttribute("pageNum", cri.getPageNum());

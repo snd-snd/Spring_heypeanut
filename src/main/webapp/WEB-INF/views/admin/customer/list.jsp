@@ -23,37 +23,18 @@
 					    </tr>
 					  </thead>
 					  <tbody>
-					    <tr>
-					      <td class="align-middle">1</td>
-					      <td class="align-middle">kim123</td>
-					      <td class="align-middle">김태호</td>
-					      <td class="align-middle">hsdfj@naver.com</td>
-					      <td class="align-middle">010-4312-2774</td>
-					      <td class="align-middle">1231-121</td>  
-					      <td class="align-middle">서울시 섬밭로 52 101-1311</td>  
-					      <td class="align-middle">2019-11-11</td>  
-					    </tr>
-					    <tr>
-					      <td class="align-middle">2</td>
-					      <td class="align-middle">kim123</td>
-					      <td class="align-middle">김태호</td>
-					      <td class="align-middle">hsdfj@naver.com</td>
-					      <td class="align-middle">010-4312-2774</td>
-					      <td class="align-middle">1231-121</td>  
-					      <td class="align-middle">서울시 섬밭로 52 101-1311</td>  
-					      <td class="align-middle">2019-11-11</td>  
-					    </tr>
-					    <tr>
-					      <td class="align-middle">3</td>
-					      <td class="align-middle">kim123</td>
-					      <td class="align-middle">김태호</td>
-					      <td class="align-middle">hsdfj@naver.com</td>
-					      <td class="align-middle">010-4312-2774</td>
-					      <td class="align-middle">1231-121</td>  
-					      <td class="align-middle">서울시 섬밭로 52 101-1311</td>  
-					      <td class="align-middle">2019-11-11</td>  
-					    </tr>
-					    	   
+					  	<c:forEach items="${list }" var="member" varStatus="status">
+					  		<tr>
+						      <td class="align-middle">${status.count }</td>
+						      <td class="align-middle">${member.id }</td>
+						      <td class="align-middle">${member.name }</td>
+						      <td class="align-middle">${member.email }</td>
+						      <td class="align-middle">${member.phone }</td>
+						      <td class="align-middle">${member.postcode }</td>  
+						      <td class="align-middle">${member.roadAddress } ${member.detailAddress }</td>  
+						      <td class="align-middle"><fmt:formatDate pattern="yyyy-MM-dd" value="${member.regDate }"/></td>  
+						    </tr>
+					  	</c:forEach>				    	   
 					  </tbody>
 					</table>		
 				</div>
