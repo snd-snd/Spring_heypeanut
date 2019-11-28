@@ -9,7 +9,7 @@
 					<hr />
 				</div>
 				<div class="form-md">
-					<form action="" method="post" id="form">
+					<form action="/qna/register" method="post" id="form2">
 					  <div class="form-group">
 					    <input type="text" class="form-control" name="title" placeholder="제목">
 					  </div>
@@ -26,7 +26,7 @@
 			</div>
 		</section>
 	</div>
-<form action="" id="form2">
+<form action="" id="form3">
 	<input type="hidden" name="pageNum" value="${cri.pageNum }"/>
 	<input type="hidden" name="amount" value="${cri.amount }"/>
 	<input type="hidden" name="type" value="${cri.type }" />
@@ -36,6 +36,7 @@
 $(function(){		
 	
 	var form2 = $("#form2");
+	var form3 = $("#form3");
 	
 	CKEDITOR.replace('edit', {
 		height: 400
@@ -46,11 +47,11 @@ $(function(){
 
 		$("#edit").val(content);		
 		form2.submit();
-	})
+	});
 	
 	$("#listBtn").click(function(){
-		form2.attr("action", "/qna/list");	
-		form2.submit();
+		form3.attr("action", "/qna/list");	
+		form3.submit();
 	})
 
 })

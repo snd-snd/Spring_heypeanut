@@ -92,86 +92,7 @@
 				</div>
 			</div>
 		</section>
-		
-		<!-- Q & A -->
-		<!-- <section>
-			<div class="container">		
-				<div>
-					<h6>Q & A</h6>            
-				  	<table class="table table-sm">
-					  	<thead>
-					      <tr>
-					        <th>번호</th>
-					        <th>제목</th>
-					        <th>작성자</th>
-					        <th>작성일</th>
-					      </tr>
-					    </thead>
-					    <tbody>
-							<tr>
-								<td>1</td>
-								<td>상품문의</td>
-								<td>김태호</td>
-								<td>2019-11-11</td>
-							</tr>
-							<tr>
-								<td>2</td>
-								<td>상품문의</td>
-								<td>이규호</td>
-								<td>2019-11-11</td>
-							</tr>
-							<tr>
-								<td>3</td>
-								<td>상품문의</td>
-								<td>최성호</td>
-								<td>2019-11-11</td>
-							</tr>
-							<tr>
-								<td>4</td>
-								<td>상품문의</td>
-								<td>박찬호</td>
-								<td>2019-11-11</td>
-							</tr>
-							<tr>
-								<td>5</td>
-								<td>상품문의</td>
-								<td>이재영</td>
-								<td>2019-11-11</td>
-							</tr> 
-				     
-							     
-					    </tbody>
-					</table>
-				 
-				 페이징 처리
-					<div class="">
-						<ul class="pagination pagination-sm justify-content-center">
-							<li class="page-item">
-								<a class="page-link" href="#">&laquo;</a>
-							</li>
-							<li class="page-item active">
-								<a class="page-link" href="#">1</a>
-							</li>
-							<li class="page-item">
-								<a class="page-link" href="#">2</a>
-							</li>
-							<li class="page-item">
-								<a class="page-link" href="#">3</a>
-							</li>
-							<li class="page-item">
-								<a class="page-link" href="#">4</a>
-							</li>
-							<li class="page-item">
-								<a class="page-link" href="#">5</a>
-							</li>
-							<li class="page-item">
-								<a class="page-link" href="#">&raquo;</a>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</section> -->			
+				
 	</div>	
 <!-- Modal -->
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -205,6 +126,8 @@ $(function(){
 	var modal = $(".modal");
 	var pno = '${pro.pno }';
 	
+	var login = '${login.id}';
+	
 	reviewList(1); //리뷰 보여주기
 	
 	$("input[type='number']").on("change", function(){		
@@ -215,6 +138,12 @@ $(function(){
 	})
 		
 	$("#orderBtn").on("click", function(){
+		if (login.length == 0 || login == ""){
+			alert("로그인 후 사용가능합니다.");
+			location.href="/member/login";
+			return;
+		}
+		
 		var number = $("input[type='number']").val();
 		
 		amount.val(number);
@@ -222,6 +151,12 @@ $(function(){
 	})
 	
 	$("#basketBtn").on("click", function(){
+		if (login.length == 0 || login == ""){
+			alert("로그인 후 사용가능합니다.");
+			location.href="/member/login";
+			return;
+		}
+		
  		var id = form.find("input[name='id']").val();
 		var pno = form.find("input[name='pno']").val();
 		var price = form.find("input[name='price']").val();

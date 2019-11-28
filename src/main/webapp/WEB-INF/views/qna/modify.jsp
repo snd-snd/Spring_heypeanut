@@ -14,7 +14,7 @@
 					    <input type="text" class="form-control" id="title" placeholder="제목" value="${qna.title }">
 					  </div>
 					  <div class="form-group">
-					    <textarea name="content" id="edit"></textarea>
+					    <textarea id="edit"></textarea>
 					  </div>
 					  <input type="hidden" name="qno" value="${qna.qno}" />
 					  <div class="text-right">
@@ -27,13 +27,13 @@
 		</section>
 	</div>
 <form action="" method="post" id="form2">
-	<input type="hidden" name="qno" value="${qna.qno }">
-	<input type="hidden" name="title">
-	<input type="hidden" name="content">
-	<input type="hidden" name="pageNum" value="${cri.pageNum }">
-	<input type="hidden" name="amount" value="${cri.amount }">
-	<input type="hidden" name="type" value="${cri.type }">
-	<input type="hidden" name="keyword" value="${cri.keyword }">	
+	<input type="hidden" name="qno" value="${qna.qno }"/>
+	<input type="hidden" name="title"/>
+	<input type="hidden" name="content"/>
+	<input type="hidden" name="pageNum" value="${cri.pageNum }"/>
+	<input type="hidden" name="amount" value="${cri.amount }"/>
+	<input type="hidden" name="type" value="${cri.type }"/>
+	<input type="hidden" name="keyword" value="${cri.keyword }"/>	
 </form>
 <script>
 $(function(){
@@ -49,7 +49,6 @@ $(function(){
 	
 	var btnModify = $("#modify");
 	var btnList = $("#list");
-	var form = $("form");
 	
 	$("#modifyBtn").on("click",function(){
 		var title = $("#title").val();

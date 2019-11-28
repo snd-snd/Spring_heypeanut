@@ -19,7 +19,7 @@
 		<property name="driverClassName" value="oracle.jdbc.OracleDriver"></property>
 		<property name="username" value="heypeanut"/>
 		<property name="password" value="12345"/>
-		<property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521:orcl"/>
+		<property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521:ORCL"/>
 	</bean>
 			
 	<!-- DataSource -->

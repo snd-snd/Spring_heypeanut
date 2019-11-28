@@ -34,7 +34,7 @@ public class FileController {
 		log.info("FileController -> 이미지 업로드: " + uploadFile);
 		System.out.println(uploadFile);
 		
-		String uploadFolder = "d:\\upload";
+		String uploadFolder = "d://upload";
 		String uploadFolderPath = getFolder(); // 2019/10/29
 		File uploadPath = new File(uploadFolder, uploadFolderPath);
 		
@@ -70,7 +70,7 @@ public class FileController {
 		log.info("FileController -> 섬네일 이미지 요청: " + pno);
 		
 		AttachVO attach = a_service.detail(pno);	
-		File file = new File("d:/upload/"+attach.getUploadPath()+"/"+ attach.getUuid() +"_"+ attach.getFileName());
+		File file = new File("d://upload/"+attach.getUploadPath()+"/"+ attach.getUuid() +"_"+ attach.getFileName());
 				
 		ResponseEntity<byte[]> entity = new ResponseEntity<byte[]>(HttpStatus.BAD_REQUEST);
 		

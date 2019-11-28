@@ -44,6 +44,11 @@ public class HomeController {
 		log.info("400 에러페이지 요청");
 	}
 	
+	@GetMapping("/error/error403")
+	public void error403() {
+		log.info("403 에러페이지 요청");
+	}
+	
 	@GetMapping("/error/error404")
 	public void error404() {
 		log.info("404 에러페이지 요청");

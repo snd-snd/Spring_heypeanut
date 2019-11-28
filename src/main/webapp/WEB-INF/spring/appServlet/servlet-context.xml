@@ -34,7 +34,20 @@
 	<task:scheduler id="jobScheduler" pool-size="10" />
     <task:annotation-driven scheduler="jobScheduler" />
 
-
+	<!-- interceptor 설정 -->
+	<beans:bean id="loginInterceptor" class="com.heypeanut.handler.LoginHandler"/>
+	<interceptors>
+		<interceptor>
+			<!-- 위와 같은 URL 요청이 있을 경우 인터셉터가 가로챔 -->
+			<mapping path="/order/basket"/>
+			<mapping path="/order/history"/>
+			<mapping path="/admin/**"/>
+			
+			<beans:ref bean="loginInterceptor"/>
+		</interceptor>
+	</interceptors>
+	
+	<context:component-scan base-package="com.ojakgyo.handler" />
 	
 	
 	
