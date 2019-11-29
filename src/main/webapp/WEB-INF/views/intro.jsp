@@ -4,10 +4,15 @@
 	<div class="main">
 		<section>
 			<div class="container">
-				<div style="width: 1000px; margin: 0 auto;">
-					<img src="/resources/img/0001.jpg" alt="" class="intro-img"/>
-					<img src="/resources/img/0002.jpg" alt="" class="intro-img"/>
-					<img src="/resources/img/0003.jpg" alt="" class="intro-img"/>
+				<div class="text-center">
+					<h3><strong>소개글</strong></h3>
+				</div>
+				<hr />
+				<div>
+					<h3>phone : 010-4312-2774</h3>
+					<h3>email : hyssop9734@naver.com</h3>
+					<h3>blog : snd-snd.tistory.com</h3>
+					<h3>git : https://github.com/snd-snd</h3>
 				</div>
 			</div>			
 		</section>

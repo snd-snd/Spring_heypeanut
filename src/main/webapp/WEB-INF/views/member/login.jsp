@@ -23,17 +23,17 @@
 					  </div>
 					</form>		
 					<div>						
-					  	<button type="submit" class="btn btn-outline-secondary login-button" onclick="location.href='/member/joinInfo'">회원가입</button>
-					  	<button type="submit" class="btn btn-outline-secondary login-button">아이디/비밀번호 찾기</button>						
+					  	<button type="button" class="btn btn-outline-secondary login-button" onclick="location.href='/member/joinInfo'">회원가입</button>
+					  	<button type="button" class="btn btn-outline-secondary login-button" onclick="alert('구현준비중')">아이디/비밀번호 찾기</button>						
 					</div>	
 				</div>
 			</section>
 			<section>
 				<div class="text-center">		
 					<h3><strong>SNS 로그인</strong></h3>
-					<a href=""><img src="/resources/img/facebook.png" alt="" width="50" height="50"/></a>
-					<a href=""><img src="/resources/img/naver.png" alt="" width="50" height="50"/></a>
-					<a href=""><img src="/resources/img/kakao.png" alt="" width="50" height="50"/></a>
+					<a href="#" onclick="alert('구현준비중')"><img src="/resources/img/facebook.png" alt="" width="50" height="50"/></a>
+					<a href="#" onclick="alert('구현준비중')"><img src="/resources/img/naver.png" alt="" width="50" height="50"/></a>
+					<a href="#" onclick="alert('구현준비중')"><img src="/resources/img/kakao.png" alt="" width="50" height="50"/></a>
 				</div>
 			</section>
 		</div>

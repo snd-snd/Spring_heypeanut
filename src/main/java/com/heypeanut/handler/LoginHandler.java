@@ -15,14 +15,7 @@ public class LoginHandler extends HandlerInterceptorAdapter {
 			throws Exception {
 
 		HttpSession session = request.getSession();
-		LoginVO login = (LoginVO) session.getAttribute("login");
-		
-		
-		System.out.println("정글러!!!!!!!!!!!!");
-		System.out.println("정글러!!!!!!!!!!!!");
-		System.out.println("정글러!!!!!!!!!!!!");
-		System.out.println("정글러!!!!!!!!!!!!");
-		
+		LoginVO login = (LoginVO) session.getAttribute("login");		
 		
 		if (login == null) {		
 			response.sendRedirect("/member/login");
@@ -30,10 +23,7 @@ public class LoginHandler extends HandlerInterceptorAdapter {
 		}
 		
 		String uri = request.getRequestURI().substring(1);
-		System.out.println(uri);
-		System.out.println(uri);
-		System.out.println(uri);
-		System.out.println(uri);
+
 		if (uri.contains("admin")) {
 			String id = login.getId();
 			if (!id.equals("admin")) {

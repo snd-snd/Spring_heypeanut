@@ -73,10 +73,10 @@ public class QNAController {
 		log.info("QNAController -> QNA 글수정: "+qna+","+cri);
 			
 		if (q_service.modify(qna)) {
-			rttr.addAttribute("pageNum", cri.getPageNum());
-			rttr.addAttribute("amount", cri.getAmount());		
-			rttr.addAttribute("type", cri.getType());			
-			rttr.addAttribute("keyword", cri.getKeyword());
+//			rttr.addAttribute("pageNum", cri.getPageNum());
+//			rttr.addAttribute("amount", cri.getAmount());		
+//			rttr.addAttribute("type", cri.getType());			
+//			rttr.addAttribute("keyword", cri.getKeyword());
 		}	
 	
 		return "redirect:/qna/list";

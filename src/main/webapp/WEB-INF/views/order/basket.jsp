@@ -77,7 +77,7 @@
 				</div> -->
 				
 				<div class="text-center">
-					<button class="btn btn-outline-danger btn-lg" id="payment">상품결제하기</button>
+					<button class="btn btn-outline-danger btn-lg" id="payment" onclick="alert('구현준비중')">상품결제하기</button>
 					<button class="btn btn-danger btn-lg" onclick="location.href='/product/list?cate=all'">쇼핑계속하기</button>
 				</div>
 				<hr/>		
